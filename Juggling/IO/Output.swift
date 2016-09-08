@@ -41,7 +41,7 @@ extension BeatState.Direction: CustomStringConvertible {
 
 extension Siteswap.State: CustomStringConvertible {
     var description: String {
-        let representationFormat = "Siteswap.State -> \(representation.map({ $0 ? 1 : 0 }))"
+        let representationFormat = "Siteswap.State -> \(representation.map(Int.init))"
         
         if let existingAddedNumber = added {
             return representationFormat + ", added number is \(existingAddedNumber))"

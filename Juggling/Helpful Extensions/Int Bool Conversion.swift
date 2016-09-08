@@ -11,3 +11,9 @@ extension Bool {
         self = integer == 1
     }
 }
+
+extension Int {
+    init(from booleanValue: Bool) {
+        self = booleanValue ? 1 : 0
+    }
+}
