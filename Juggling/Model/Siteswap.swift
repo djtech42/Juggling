@@ -78,26 +78,20 @@ struct Siteswap: Hashable {
     
     
     static func ==(lhs: Siteswap, rhs: Siteswap) -> Bool {
-        var allValuesEqual = true
-        
-        for (index, element) in lhs.heights.enumerated() {
-            if element != rhs.heights[index] {
-                allValuesEqual = false
-                break
-            }
-        }
-        
-        return allValuesEqual
+        return lhs.hashValue == rhs.hashValue
     }
     
     
-    struct State {
+    struct State: Hashable {
         var representation: [Bool]
         var added: Int?
         
         
+        var integerRepresentation: [Int] {
+            return representation.map({ Int(from: $0) })
+        }
         var numberOfBalls: Int {
-            return representation.reduce(0, { $0 + Int(from: $1) })
+            return integerRepresentation.reduce(0, +)
         }
         
         func numberOfPossibleSiteswaps(ofLength swapLength: Int) -> Int {
@@ -131,6 +125,11 @@ struct Siteswap: Hashable {
         
         var length: Int {
             return representation.count
+        }
+        
+        
+        var hashValue: Int {
+            return integerRepresentation.joinedDigits()
         }
         
         
@@ -169,6 +168,11 @@ struct Siteswap: Hashable {
             let blankState = Array(repeating: 0, count: ballNumbers.max()! + 1)
             representation = blankState.enumerated().map({ index, _ in ballNumbers.contains(index) })
             self.added = swap.heights.last!
+        }
+        
+        
+        static func ==(lhs: State, rhs: State) -> Bool {
+            return lhs.hashValue == rhs.hashValue
         }
     }
 }
