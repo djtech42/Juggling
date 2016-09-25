@@ -86,10 +86,31 @@ struct Siteswap: Hashable {
         return allValuesEqual
     }
     
+    
     struct State {
         var representation: [Bool]
         var added: Int?
         
+        
+        var numberOfBalls: Int {
+            return representation.reduce(0, { $0 + Int(from: $1) })
+        }
+        
+        func numberOfSiteswaps(ofLength swapLength: Int) -> Int {
+            var currentMultiplier = 1
+            var product = 1
+            var increment = true
+            
+            for j in 0..<swapLength - 1 {
+                if increment {
+                    currentMultiplier += 1
+                }
+                product *= currentMultiplier
+                increment = representation[j + 1]
+            }
+            
+            return product
+        }
         
         var length: Int {
             return representation.count
