@@ -101,8 +101,15 @@ struct Siteswap: Hashable {
         }
         
         func numberOfPossibleSiteswaps(ofLength swapLength: Int) -> Int {
-            for i in swapLength..<length {
-                if representation[i] && representation[i - swapLength] != representation[i] {
+            var tempRepresentation = representation
+            if swapLength > length {
+                for _ in length...swapLength {
+                    tempRepresentation.append(false)
+                }
+            }
+            
+            for i in swapLength..<tempRepresentation.count {
+                if tempRepresentation[i] && tempRepresentation[i - swapLength] != tempRepresentation[i] {
                     return 0
                 }
             }
@@ -116,7 +123,7 @@ struct Siteswap: Hashable {
                     currentMultiplier += 1
                 }
                 product *= currentMultiplier
-                increment = representation[j + 1]
+                increment = tempRepresentation[j + 1]
             }
             
             return product
