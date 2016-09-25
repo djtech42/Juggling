@@ -44,7 +44,7 @@ extension Siteswap.State: CustomStringConvertible {
         let representationFormat = "Siteswap.State -> \(representation.map(Int.init))"
         
         if let existingAddedNumber = added {
-            return representationFormat + ", added number is \(existingAddedNumber))"
+            return representationFormat + ", added number is \(existingAddedNumber)"
         }
         else {
             return representationFormat
