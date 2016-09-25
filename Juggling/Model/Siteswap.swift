@@ -8,6 +8,10 @@
 
 import Foundation
 
+func numberOfPossibleSiteswaps(ofLength length: Int, withNumberOfBalls numberOfBalls: Int) -> Int {
+    return (numberOfBalls + 1) ** length - numberOfBalls ** length
+}
+
 struct Siteswap: Hashable {
     var heights: [Int]
     
