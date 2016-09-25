@@ -74,8 +74,8 @@ class SiteswapTests: XCTestCase {
     }
     
     func testStateNumberOfSiteswaps1() {
-        let state = Siteswap.State(with: [1, 1, 1, 0, 1, 1])
-        XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 5), 96)
+        let state = Siteswap.State(with: [1, 1, 0, 1, 0, 1])
+        XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 3), 0)
     }
     
     func testStateNumberOfSiteswaps2() {
@@ -84,6 +84,11 @@ class SiteswapTests: XCTestCase {
     }
     
     func testStateNumberOfSiteswaps3() {
+        let state = Siteswap.State(with: [1, 1, 1, 0, 1, 1])
+        XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 5), 96)
+    }
+    
+    func testStateNumberOfSiteswaps4() {
         let state = Siteswap.State(with: [1, 1, 1, 0, 1, 0, 1, 0, 1])
         XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 8), 14400)
     }

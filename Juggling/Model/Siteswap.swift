@@ -101,6 +101,12 @@ struct Siteswap: Hashable {
         }
         
         func numberOfPossibleSiteswaps(ofLength swapLength: Int) -> Int {
+            for i in swapLength..<length {
+                if representation[i] && representation[i - swapLength] != representation[i] {
+                    return 0
+                }
+            }
+            
             var currentMultiplier = 1
             var product = 1
             var increment = true
