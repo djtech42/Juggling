@@ -96,7 +96,7 @@ struct Siteswap: Hashable {
             return representation.reduce(0, { $0 + Int(from: $1) })
         }
         
-        func numberOfSiteswaps(ofLength swapLength: Int) -> Int {
+        func numberOfPossibleSiteswaps(ofLength swapLength: Int) -> Int {
             var currentMultiplier = 1
             var product = 1
             var increment = true

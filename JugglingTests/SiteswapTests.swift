@@ -28,7 +28,7 @@ class SiteswapTests: XCTestCase {
     
     func testJoinHeights() {
         let swap = Siteswap(withHeightsFrom: [9, 1, 5, 1])
-        XCTAssertEqual(swap?.hashValue, 9151)
+        XCTAssertEqual(swap!.hashValue, 9151)
     }
     
     func testBeatStates() {
@@ -63,12 +63,17 @@ class SiteswapTests: XCTestCase {
     
     func testStateNumberOfSiteswaps1() {
         let state = Siteswap.State(with: [1, 1, 1, 0, 1, 1])
-        XCTAssertEqual(state?.numberOfSiteswaps(ofLength: 5), 96)
+        XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 5), 96)
     }
     
     func testStateNumberOfSiteswaps2() {
         let state = Siteswap.State(with: [1, 1, 0, 1, 0, 1])
-        XCTAssertEqual(state?.numberOfSiteswaps(ofLength: 5), 72)
+        XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 5), 72)
+    }
+    
+    func testStateNumberOfSiteswaps3() {
+        let state = Siteswap.State(with: [1, 1, 1, 0, 1, 0, 1, 0, 1])
+        XCTAssertEqual(state!.numberOfPossibleSiteswaps(ofLength: 8), 14400)
     }
     
     func testLandingTimes() {
